@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:nutri_diet/App/Auth/View%20Model/splash_viewmodel.dart';
 import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
 
 class SplashView extends StatelessWidget {
-  const SplashView({super.key});
+  SplashView({super.key});
+
+  final splahVM = Get.find<SplashViewModel>();
 
   @override
   Widget build(BuildContext context) {

@@ -39,6 +39,11 @@ dependencies:
   # Styling Dependences
   google_fonts: ^6.2.1
 
+  #  Networking Dependencies
+
+  # State Management
+  get: ^4.6.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
