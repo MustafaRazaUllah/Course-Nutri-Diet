@@ -7,7 +7,7 @@ class SplashViewModel extends GetxController {
     // TODO: implement onInit
     super.onInit();
     Future.delayed(const Duration(seconds: 2), () {
-      Get.toNamed(AppRoutes.onBoardingView);
+      Get.toNamed(AppRoutes.onBoarding1View);
     });
   }
 }

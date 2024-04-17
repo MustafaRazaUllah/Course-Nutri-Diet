@@ -7,9 +7,10 @@ import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
+import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
-class OnBoardingView extends StatelessWidget {
-  OnBoardingView({super.key});
+class OnBoarding2View extends StatelessWidget {
+  OnBoarding2View({super.key});
 
   final onboardingVM = Get.find<OnBoardingViewModel>();
 
@@ -29,7 +30,7 @@ class OnBoardingView extends StatelessWidget {
                       padding: EdgeInsets.only(
                           bottom: context.mediaQuerySize.height * 0.1),
                       child: Image.asset(
-                        AppAssets.onboarding1,
+                        AppAssets.onboarding2,
                         height: 260,
                         width: 260,
                       ),
@@ -52,7 +53,7 @@ class OnBoardingView extends StatelessWidget {
                 child: Column(
                   children: [
                     const AppText(
-                      title: "Welcome",
+                      title: "Elevate Your Health",
                       size: 28,
                       fontWeight: FontWeight.w400,
                       color: AppColors.blackText,
@@ -61,7 +62,7 @@ class OnBoardingView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppText(
-                          title: "To ",
+                          title: "with ",
                           size: 28,
                           fontWeight: FontWeight.w400,
                           color: AppColors.blackText,
@@ -81,8 +82,7 @@ class OnBoardingView extends StatelessWidget {
                       ],
                     ),
                     const AppText(
-                      title:
-                          "Your Ultimate Diet Companion For Total Well-being.",
+                      title: "Maximize Your Wellness Journey With Expert Tips.",
                       size: 16,
                       fontWeight: FontWeight.w400,
                       color: AppColors.geryText,
@@ -99,7 +99,7 @@ class OnBoardingView extends StatelessWidget {
                           width: 10,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: AppColors.primaryColor,
+                            color: AppColors.primaryColor.withOpacity(0.4),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -108,7 +108,7 @@ class OnBoardingView extends StatelessWidget {
                           width: 10,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: AppColors.primaryColor.withOpacity(0.4),
+                            color: AppColors.primaryColor,
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -124,8 +124,10 @@ class OnBoardingView extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     AppButton(
-                      title: 'Get Started',
-                      callback: () {},
+                      title: 'Next',
+                      callback: () {
+                        Get.toNamed(AppRoutes.onBoarding3View);
+                      },
                     ),
                     const SizedBox(height: 5),
                     AppButton(
@@ -134,7 +136,7 @@ class OnBoardingView extends StatelessWidget {
                       bgColor: AppColors.secondaryColor,
                       textColor: AppColors.blackText,
                       callback: () {
-                        print("object");
+                        Get.offAllNamed(AppRoutes.loginView);
                       },
                     ),
                   ],

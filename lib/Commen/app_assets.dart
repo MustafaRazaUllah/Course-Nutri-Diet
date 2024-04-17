@@ -7,4 +7,8 @@ class AppAssets {
 
   // Icons Folder
   static String arrowBack = "assets/icons/arrow_back.png";
+
+  static String appleIcon = "assets/icons/apple.png";
+  static String facebookIcon = "assets/icons/facebook.png";
+  static String googleIcon = "assets/icons/google.png";
 }

@@ -10,6 +10,10 @@ class AppColors {
   static const Color geryText = Color(0xFF908F8F);
 
   // App Button Colors
+  static const Color socialbutton = Color(0xffEBEBEB);
 
   // App TextFeild Colors
+
+  // Other Colors
+  static const Color borderGery = Color(0xFFC9C9C9);
 }
