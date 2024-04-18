@@ -38,6 +38,7 @@ dependencies:
   
   # Styling Dependences
   google_fonts: ^6.2.1
+  flutter_keyboard_visibility: ^6.0.0
 
   #  Networking Dependencies
 
