@@ -5,6 +5,5 @@ mixin AppRoutes {
   static const onBoarding3View = "/OnBoarding3View";
 
   static const loginView = "/LoginView";
-
-  
+  static const registerView = "/RegisterView";
 }

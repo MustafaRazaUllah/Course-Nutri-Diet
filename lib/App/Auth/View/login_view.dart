@@ -1,16 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:nutri_diet/App/Auth/View%20Model/login_viewmodel.dart';
 import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
 import 'package:nutri_diet/Commen/app_textfield.dart';
+import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  LoginView({super.key});
+
+  final loginVM = Get.find<LoginViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -91,20 +92,33 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    const AppTextFromField(
-                      hintText: "Email",
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 15),
-                    const AppTextFromField(
-                      hintText: "Password",
-                      keyboardType: TextInputType.emailAddress,
-                      isPassword: true,
+                    Form(
+                      key: loginVM.formkey,
+                      child: Column(
+                        children: [
+                          AppTextFromField(
+                            hintText: "Email",
+                            keyboardType: TextInputType.emailAddress,
+                            controller: loginVM.loginEmail.value,
+                            isEmailField: true,
+                          ),
+                          const SizedBox(height: 15),
+                          AppTextFromField(
+                            hintText: "Password",
+                            keyboardType: TextInputType.emailAddress,
+                            isPassword: true,
+                            
+                            controller: loginVM.loginPassword.value,
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 15),
                     AppButton(
                       title: "Sign In",
-                      callback: () {},
+                      callback: () {
+                        loginVM.onLogin();
+                      },
                     ),
                     const SizedBox(height: 15),
                     Row(
@@ -250,19 +264,27 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText(
+                        const AppText(
                           title: "Don’t Have an account? ",
                           size: 14,
                           fontWeight: FontWeight.w400,
                         ),
-                        AppText(
-                          title: "Sign Up",
-                          size: 14,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primaryColor,
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.registerView);
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: const AppText(
+                              title: "Sign Up",
+                              size: 14,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
                         ),
                       ],
                     ),
