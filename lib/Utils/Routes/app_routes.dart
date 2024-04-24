@@ -6,4 +6,8 @@ mixin AppRoutes {
 
   static const loginView = "/LoginView";
   static const registerView = "/RegisterView";
+
+  static const homeView = "/HomeView";
+
+  
 }

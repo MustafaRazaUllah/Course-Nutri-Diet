@@ -5,6 +5,8 @@ import 'package:nutri_diet/App/Auth/View%20Model/splash_viewmodel.dart';
 import 'package:nutri_diet/App/Auth/View/login_view.dart';
 import 'package:nutri_diet/App/Auth/View/register_view.dart';
 import 'package:nutri_diet/App/Auth/View/splash.dart';
+import 'package:nutri_diet/App/Home/View%20Model/home_viewmodel.dart';
+import 'package:nutri_diet/App/Home/View/homeview.dart';
 import 'package:nutri_diet/App/On%20Baording/View%20Model/onboarding_viewmodel.dart';
 import 'package:nutri_diet/App/On%20Baording/View/onboarding1.dart';
 import 'package:nutri_diet/Utils/Routes/app_routes.dart';
@@ -56,7 +58,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.loginView,
-      page: () =>  LoginView(),
+      page: () => LoginView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginViewModel>(
@@ -64,13 +66,23 @@ class AppPages {
         );
       }),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.registerView,
-      page: () =>  RegisterView(),
+      page: () => RegisterView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<RegisterViewModel>(
           () => RegisterViewModel(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.homeView,
+      page: () => const HomeView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<HomeViewModel>(
+          () => HomeViewModel(),
         );
       }),
     ),

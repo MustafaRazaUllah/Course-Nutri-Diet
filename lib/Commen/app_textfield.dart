@@ -62,6 +62,15 @@ class _AppTextFromFieldState extends State<AppTextFromField> {
         },
         decoration: InputDecoration(
           hintText: widget.hintText,
+          errorStyle: GoogleFonts.poppins(
+            height: 0.1,
+            fontStyle: FontStyle.normal,
+            letterSpacing: 0,
+            color: AppColors.redText,
+            decoration: TextDecoration.none,
+            fontWeight: FontWeight.w400,
+            fontSize: 10,
+          ),
           hintStyle: GoogleFonts.poppins(
             height: 1.5,
             fontStyle: FontStyle.normal,
@@ -81,6 +90,7 @@ class _AppTextFromFieldState extends State<AppTextFromField> {
             fontWeight: FontWeight.w500,
             fontSize: 14,
           ),
+          contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100),
             borderSide: const BorderSide(

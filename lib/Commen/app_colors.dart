@@ -8,6 +8,7 @@ class AppColors {
   // App Text Colors
   static const Color blackText = Color(0xFF19222B);
   static const Color geryText = Color(0xFF908F8F);
+  static const Color redText = Color(0xFFE53935);
 
   // App Button Colors
   static const Color socialbutton = Color(0xffEBEBEB);
