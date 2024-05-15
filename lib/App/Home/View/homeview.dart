@@ -1,13 +1,35 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:nutri_diet/Commen/app_assets.dart';
+import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int value = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      value = 20;
+    });
+  }
+  
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +70,87 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: context.mediaQuerySize.height * .29,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: AppColors.geryText.withOpacity(0.9),
+            GestureDetector(
+              onTap: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 300,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.geryText.withOpacity(0.2),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Container(
+                height: context.mediaQuerySize.height * .29,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColors.geryText.withOpacity(0.9),
+                ),
+                child: Image.asset(
+                  AppAssets.googleIcon,
+                  fit: BoxFit.cover,
+                ),
               ),
-              child: Image.asset(
-                AppAssets.googleIcon,
-                fit: BoxFit.cover,
+            ),
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  barrierDismissible: false,
+                  barrierColor: AppColors.blackText.withOpacity(0.8),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Delete Account"),
+                      content:
+                          const Text("Are you sure want to delete account?"),
+                      actions: [
+                        Row(
+                          children: [
+                            AppButton(
+                              title: "No",
+                              width: 100,
+                              bgColor: AppColors.geryText.withOpacity(0.5),
+                              callback: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            const Spacer(),
+                            AppButton(
+                              title: "yes",
+                              width: 100,
+                              callback: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Container(
+                height: context.mediaQuerySize.height * .29,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColors.primaryColor.withOpacity(0.9),
+                ),
+                child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasJmZ20tZ7-v6MCbWlIEd-Q49BKqeiN7ymtbHprn2IA&s",
+                  // AppAssets.googleIcon,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Container(
@@ -65,30 +158,100 @@ class HomeView extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: AppColors.primaryColor.withOpacity(0.9),
+                color: AppColors.redText.withOpacity(0.3),
               ),
-              child: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSasJmZ20tZ7-v6MCbWlIEd-Q49BKqeiN7ymtbHprn2IA&s",
-                // AppAssets.googleIcon,
-                fit: BoxFit.cover,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppText(title: value.toString()),
+                  const SizedBox(height: 20),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppButton(
+                        title: "Remove 1",
+                        width: context.mediaQuerySize.width / 2.5,
+                        callback: () {
+                          setState(() {
+                            value--;
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 20),
+                      AppButton(
+                        title: "Add 1",
+                        width: context.mediaQuerySize.width / 2.5,
+                        callback: () {
+                          setState(() {
+                            value++;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            Container(
-              height: context.mediaQuerySize.height * .29,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: AppColors.redText.withOpacity(0.9),
-              ),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl:
-                    "https://i.pinimg.com/736x/a5/95/53/a59553b51e05985c0cafba435488aec2.jpg",
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () {
+            //     Fluttertoast.showToast(
+            //       msg: "This is Center Short Toast",
+            //       toastLength: Toast.LENGTH_SHORT,
+            //       gravity: ToastGravity.SNACKBAR,
+            //       timeInSecForIosWeb: 10,
+            //       backgroundColor: Colors.red,
+            //       textColor: Colors.white,
+            //       fontSize: 16.0,
+            //     );
+            //   },
+            //   child: Container(
+            //     height: context.mediaQuerySize.height * .29,
+            //     width: double.infinity,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(20),
+            //       color: AppColors.redText.withOpacity(0.3),
+            //     ),
+            //     child: Column(
+            //       children: [
+            //         GestureDetector(
+            //           onTap: () {
+            //             ScaffoldMessenger.of(context).showSnackBar(
+            //               SnackBar(
+            //                 action: SnackBarAction(
+            //                   label: 'Successfull',
+            //                   onPressed: () {
+            //                     // Code to execute.
+            //                   },
+            //                 ),
+            //                 content: const Text(
+            //                     'Successfully Clicked on user Image'),
+            //               ),
+            //             );
+            //           },
+            //           child: SizedBox(
+            //             height: 100,
+            //             width: 100,
+            //             child: ClipRRect(
+            //               borderRadius: BorderRadius.circular(100),
+            //               child: CachedNetworkImage(
+            //                 fit: BoxFit.cover,
+            //                 imageUrl:
+            //                     "https://i.pinimg.com/736x/a5/95/53/a59553b51e05985c0cafba435488aec2.jpg",
+            //                 placeholder: (context, url) =>
+            //                     const CircularProgressIndicator(),
+            //                 errorWidget: (context, url, error) =>
+            //                     const Icon(Icons.error),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         const AppText(title: "Mustafa Raza"),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

@@ -40,8 +40,11 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_keyboard_visibility: ^6.0.0
   cached_network_image: ^3.3.1
+  fluttertoast: ^8.2.5
 
   #  Networking Dependencies
+  http: ^1.2.1
+  shared_preferences: ^2.2.3
 
   # State Management
   get: ^4.6.6
