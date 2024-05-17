@@ -107,18 +107,21 @@ class LoginView extends StatelessWidget {
                             hintText: "Password",
                             keyboardType: TextInputType.emailAddress,
                             isPassword: true,
-                            
                             controller: loginVM.loginPassword.value,
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 15),
-                    AppButton(
-                      title: "Sign In",
-                      callback: () {
-                        loginVM.onLogin();
-                      },
+                    Obx(
+                      () => AppButton(
+                        title: "Sign In",
+                        isLoading: loginVM.isLoading.value,
+                        callback: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          loginVM.onLogin();
+                        },
+                      ),
                     ),
                     const SizedBox(height: 15),
                     Row(

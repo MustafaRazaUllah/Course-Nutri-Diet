@@ -9,18 +9,26 @@ class LoginViewModel extends GetxController with AuthService {
   Rx<TextEditingController> loginEmail = TextEditingController().obs;
   Rx<TextEditingController> loginPassword = TextEditingController().obs;
 
+  RxBool isLoading = false.obs;
+
   void onLogin() async {
     if (formkey.currentState!.validate()) {
-      print("Login Email ${loginEmail.value.text}");
-      print("Login Password ${loginPassword.value.text}");
+      try {
+        isLoading.value = true;
+        print("Login Email ${loginEmail.value.text}");
+        print("Login Password ${loginPassword.value.text}");
 
-      UserModel result = await onLoginService(
-        email: loginEmail.value.text,
-        password: loginPassword.value.text,
-      );
+        UserModel result = await onLoginService(
+          email: loginEmail.value.text,
+          password: loginPassword.value.text,
+        );
 
-      if (result.email.isNotEmpty) {
-        Get.offAllNamed(AppRoutes.homeView);
+        isLoading.value = false;
+        if (result.email.isNotEmpty) {
+          Get.offAllNamed(AppRoutes.homeView);
+        }
+      } catch (e) {
+        isLoading.value = false;
       }
     }
   }

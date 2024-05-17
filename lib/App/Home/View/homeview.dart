@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
+import 'package:nutri_diet/DB/local_datrabase.dart';
+import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -23,12 +26,11 @@ class _HomeViewState extends State<HomeView> {
       value = 20;
     });
   }
-  
+
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    
   }
 
   @override
@@ -51,9 +53,12 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await DatabaseHandler().logout();
+              Get.offAllNamed(AppRoutes.loginView);
+            },
             icon: const Icon(
-              Icons.notification_add,
+              Icons.logout,
             ),
           ),
           IconButton(

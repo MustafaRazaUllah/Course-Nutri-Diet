@@ -7,13 +7,22 @@ class SplashViewModel extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    Future.delayed(const Duration(seconds: 2), () async {
-      String token = await DatabaseHandler().getToken();
-      if (token.isNotEmpty) {
-        Get.toNamed(AppRoutes.homeView);
-      } else {
-        Get.toNamed(AppRoutes.onBoarding1View);
-      }
-    });
+    Future.delayed(
+      
+      const Duration(seconds: 2),
+      () async {
+        String token = await DatabaseHandler().getToken();
+        bool isOnboarding = await DatabaseHandler().getOnBording();
+        if (token.isNotEmpty) {
+          Get.toNamed(AppRoutes.homeView);
+        } else {
+          if (isOnboarding) {
+            Get.toNamed(AppRoutes.loginView);
+          } else {
+            Get.toNamed(AppRoutes.onBoarding1View);
+          }
+        }
+      },
+    );
   }
 }

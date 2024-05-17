@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
 
@@ -8,9 +9,11 @@ class AppButton extends StatelessWidget {
   final Function callback;
   final Color bgColor;
   final Color textColor;
+  final bool isLoading;
   const AppButton({
     super.key,
     this.width,
+    this.isLoading = false,
     required this.title,
     required this.callback,
     this.bgColor = AppColors.primaryColor,
@@ -21,7 +24,9 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        callback();
+        if (!isLoading) {
+          callback();
+        }
       },
       child: Container(
         height: 50,
@@ -31,12 +36,23 @@ class AppButton extends StatelessWidget {
           color: bgColor,
         ),
         child: Center(
-          child: AppText(
-            title: title,
-            size: 14,
-            fontWeight: FontWeight.w500,
-            color: textColor,
-          ),
+          child: isLoading
+              ? const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: LoadingIndicator(
+                    indicatorType: Indicator.lineScale,
+                    colors: [Colors.white],
+                    strokeWidth: 3,
+                    backgroundColor: Colors.transparent,
+                    pathBackgroundColor: Colors.transparent,
+                  ),
+                )
+              : AppText(
+                  title: title,
+                  size: 14,
+                  fontWeight: FontWeight.w500,
+                  color: textColor,
+                ),
         ),
       ),
     );

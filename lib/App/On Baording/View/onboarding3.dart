@@ -7,6 +7,7 @@ import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
+import 'package:nutri_diet/DB/local_datrabase.dart';
 import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
 class OnBoarding3View extends StatelessWidget {
@@ -126,7 +127,8 @@ class OnBoarding3View extends StatelessWidget {
                     const SizedBox(height: 15),
                     AppButton(
                       title: 'Get Started',
-                      callback: () {
+                      callback: () async {
+                        await DatabaseHandler().setOnBording(true);
                         Get.offAllNamed(AppRoutes.loginView);
                       },
                     ),

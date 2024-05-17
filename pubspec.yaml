@@ -41,6 +41,8 @@ dependencies:
   flutter_keyboard_visibility: ^6.0.0
   cached_network_image: ^3.3.1
   fluttertoast: ^8.2.5
+  loading_indicator: ^3.1.1
+  
 
   #  Networking Dependencies
   http: ^1.2.1
