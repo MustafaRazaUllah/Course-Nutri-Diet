@@ -176,22 +176,30 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppButton(
-                        title: "Remove 1",
+                        title: "Privacy Policy",
                         width: context.mediaQuerySize.width / 2.5,
                         callback: () {
-                          setState(() {
-                            value--;
-                          });
+                          Get.toNamed(
+                            AppRoutes.privacyConditionView,
+                            arguments: ['Privacy Policy'],
+                          );
+                          // setState(() {
+                          //   value--;
+                          // });
                         },
                       ),
                       const SizedBox(width: 20),
                       AppButton(
-                        title: "Add 1",
-                        width: context.mediaQuerySize.width / 2.5,
+                        title: "Terms And Condition",
+                        width: context.mediaQuerySize.width / 2,
                         callback: () {
-                          setState(() {
-                            value++;
-                          });
+                          Get.toNamed(
+                            AppRoutes.privacyConditionView,
+                            arguments: ['Terms & Conditions'],
+                          );
+                          // setState(() {
+                          //   value++;
+                          // });
                         },
                       ),
                     ],

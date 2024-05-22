@@ -9,5 +9,5 @@ mixin AppRoutes {
 
   static const homeView = "/HomeView";
 
-  
+  static const privacyConditionView = "/PrivacyConditionView";
 }

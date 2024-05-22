@@ -9,6 +9,8 @@ import 'package:nutri_diet/App/Home/View%20Model/home_viewmodel.dart';
 import 'package:nutri_diet/App/Home/View/homeview.dart';
 import 'package:nutri_diet/App/On%20Baording/View%20Model/onboarding_viewmodel.dart';
 import 'package:nutri_diet/App/On%20Baording/View/onboarding1.dart';
+import 'package:nutri_diet/App/privacy_condition.dart/View%20Model/privcy_condition_vm.dart';
+import 'package:nutri_diet/App/privacy_condition.dart/View/privcy_condition.dart';
 import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
 import '../../App/On Baording/View/onboarding2.dart';
@@ -86,5 +88,18 @@ class AppPages {
         );
       }),
     ),
+
+    GetPage(
+      name: AppRoutes.privacyConditionView,
+      page: () =>  PrivacyConditionView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<PrivcyConditionVM>(
+          () => PrivcyConditionVM(),
+        );
+      }),
+    ),
+
+    
   ];
 }

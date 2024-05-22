@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
 import 'package:nutri_diet/Commen/app_text.dart';
 import 'package:nutri_diet/Commen/app_textfield.dart';
+import 'package:nutri_diet/Utils/Routes/app_routes.dart';
 
 class RegisterView extends StatelessWidget {
   RegisterView({super.key});
@@ -142,6 +144,13 @@ class RegisterView extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.toNamed(
+                                  AppRoutes.privacyConditionView,
+                                  arguments: ['Terms & Conditions'],
+                                );
+                              },
                           ),
                           TextSpan(
                             text: ' and ',
@@ -160,6 +169,16 @@ class RegisterView extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Get.to(PrivacyConditionView(
+                                //   pageTitle: 'Privacy Policy',
+                                // ));
+                                Get.toNamed(
+                                  AppRoutes.privacyConditionView,
+                                  arguments: ['Privacy Policy'],
+                                );
+                              },
                           ),
                         ],
                       ),
