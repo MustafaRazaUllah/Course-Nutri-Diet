@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nutri_diet/Commen/app_assets.dart';
 import 'package:nutri_diet/Commen/app_button.dart';
 import 'package:nutri_diet/Commen/app_colors.dart';
@@ -203,6 +204,39 @@ class _HomeViewState extends State<HomeView> {
                         },
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: AppButton(
+                            title: "Camera",
+                            callback: () async {
+                              final ImagePicker picker = ImagePicker();
+                              final XFile? image = await picker.pickImage(
+                                  source: ImageSource.gallery);
+                              print("Image Path ${image!.path}");
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: AppButton(
+                            title: "Photo",
+                            callback: () async {
+                              final ImagePicker picker = ImagePicker();
+                              final XFile? image = await picker.pickImage(
+                                  source: ImageSource.camera);
+                              print("Camera Image Path ${image!.path}");
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
